@@ -41,7 +41,7 @@ class SignUpScreen extends StatelessWidget {
                   // sign in
                   Text(
                     'Sign Up',
-                    style: AppTextStyles.largeTextPrimary,
+                    style: AppTextStyles.extraLargeTextPrimary,
                   ),
 
                   const SizedBox(
@@ -122,9 +122,10 @@ class SignUpScreen extends StatelessWidget {
 
                   // login btn
                   AppButton(
-                    height: 60,
                     width: context.width,
-                    onPressed: () {},
+                    onPressed: () => sl<NavigationService>().navigateTo(
+                      RouteNames.verificationSent,
+                    ),
                     child: Text(
                       'Create Account',
                       style: AppTextStyles.normalTextWhite,

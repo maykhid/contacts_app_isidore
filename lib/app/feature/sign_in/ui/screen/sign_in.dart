@@ -30,7 +30,7 @@ class SignInScreen extends StatelessWidget {
                 Align(
                   child: Text(
                     'MyContactsApp',
-                    style: AppTextStyles.largeTextPrimary,
+                    style: AppTextStyles.extraLargeTextPrimary,
                   ),
                 ),
 
@@ -41,7 +41,7 @@ class SignInScreen extends StatelessWidget {
                 // sign in
                 Text(
                   'Sign In',
-                  style: AppTextStyles.largeTextPrimary,
+                  style: AppTextStyles.extraLargeTextPrimary,
                 ),
 
                 const SizedBox(

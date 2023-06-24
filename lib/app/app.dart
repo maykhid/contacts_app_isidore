@@ -2,6 +2,7 @@ import 'package:contacts_app_isidore/core/router/navigation_service.dart';
 import 'package:contacts_app_isidore/core/router/router.dart';
 import 'package:contacts_app_isidore/core/service_locator.dart';
 import 'package:flutter/material.dart' hide Router;
+import 'package:google_fonts/google_fonts.dart';
 
 class ContactsApp extends StatelessWidget {
   const ContactsApp({super.key});
@@ -11,7 +12,7 @@ class ContactsApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        // textTheme: TextThemes.kodchasanTextTheme,
+        textTheme: GoogleFonts.montserratTextTheme(),
       ),
       navigatorKey: sl<NavigationService>().navigationKey,
       onGenerateRoute: Router.generateRoute,

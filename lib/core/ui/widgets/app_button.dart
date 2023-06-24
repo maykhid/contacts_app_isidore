@@ -11,7 +11,7 @@ class AppButton extends StatelessWidget {
     required this.child,
     this.onPressedOnLoading,
     this.width = 80,
-    this.height = 41,
+    this.height = 60,
     this.foregroundColor,
     this.borderRadius = 8,
     this.backgroundColor = AppColors.deepPurple,
@@ -87,7 +87,7 @@ class AppButton extends StatelessWidget {
                   //     'Please wait...', color: loadingColor, size: 15),
                 ],
               )
-            : child,
+            : Center(child: child),
       ),
     );
   }
