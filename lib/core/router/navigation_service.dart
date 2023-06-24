@@ -4,7 +4,7 @@ class NavigationService {
   final GlobalKey<NavigatorState> _navigationKey = GlobalKey<NavigatorState>();
   GlobalKey<NavigatorState> get navigationKey => _navigationKey;
 
-  pop() {
+  void pop() {
     return _navigationKey.currentState!.pop();
   }
 

@@ -5,5 +5,5 @@ GetIt sl = GetIt.instance;
 
 Future<void> setupLocator() async {
   // core
-  sl.registerLazySingleton(() => NavigationService());
+  sl.registerLazySingleton(NavigationService.new);
 }
