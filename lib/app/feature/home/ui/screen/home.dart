@@ -63,195 +63,10 @@ class HomeScreen extends StatelessWidget {
                 ),
 
                 // if no contacts
-                // const _NoContacts(),
+                const NoContacts(),
 
                 // if contacts exist
-                SizedBox(
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'My Contacts',
-                            style: AppTextStyles.normalTextPrimary,
-                          ),
-                          Container(
-                            height: 35,
-                            width: 45,
-                            decoration: BoxDecoration(
-                              color: AppColors.deepPurple,
-                              borderRadius: BorderRadius.circular(6),
-                            ),
-                            child: const Icon(
-                              Icons.add,
-                              color: Colors.white,
-                              size: 30,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Container(
-                        height: 140,
-                        width: context.width,
-                        clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.grey.withOpacity(0.4),
-                          ),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Column(
-                          children: [
-                            // name container
-                            Container(
-                              height: 50,
-                              decoration: BoxDecoration(
-                                color: AppColors.lightPink,
-                                border: Border(
-                                  bottom: BorderSide(
-                                    color: Colors.grey.withOpacity(0.3),
-                                  ),
-                                ),
-                              ),
-
-                              // name
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 20),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      'John Doe',
-                                      style: AppTextStyles.normalTextPrimary,
-                                    ),
-                                    const Icon(Icons.more_vert),
-                                  ],
-                                ),
-                              ),
-                            ),
-
-                            // phone - email - address
-                            Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    SizedBox(
-                                      child: Row(
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(12),
-                                            child: SizedBox(
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  // phone  - email
-                                                  Row(
-                                                    children: [
-                                                      // phone
-                                                      const Icon(
-                                                        Icons.phone_outlined,
-                                                        color: Colors.grey,
-                                                        size: 20,
-                                                      ),
-                                                      const SizedBox(
-                                                        width: 5,
-                                                      ),
-                                                      Text(
-                                                        '+2348089787654',
-                                                        style: TextStyle(
-                                                          color: Colors.black,
-                                                          fontSize:
-                                                              context.width *
-                                                                  0.029,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
-                                                      ),
-
-                                                      const SizedBox(
-                                                        width: 10,
-                                                      ),
-
-                                                      // email
-                                                      const Icon(
-                                                        Icons.email_outlined,
-                                                        color: Colors.grey,
-                                                        size: 20,
-                                                      ),
-                                                      const SizedBox(
-                                                        width: 5,
-                                                      ),
-                                                      Text(
-                                                        'henryifebunandu@gmail.com',
-                                                        style: TextStyle(
-                                                          fontSize:
-                                                              context.width *
-                                                                  0.029,
-                                                          color: Colors.black,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-
-                                                  const SizedBox(
-                                                    height: 8,
-                                                  ),
-
-                                                  // address
-                                                  Row(
-                                                    children: [
-                                                      const Icon(
-                                                        Icons
-                                                            .location_on_outlined,
-                                                        color: Colors.grey,
-                                                        size: 20,
-                                                      ),
-                                                      const SizedBox(
-                                                        width: 5,
-                                                      ),
-                                                      SizedBox(
-                                                        width:
-                                                            context.width - 120,
-                                                        child: Text(
-                                                          'Plot 876, Akinsanya Oladosu street, Victoria Island, Lagos',
-                                                          style: TextStyle(
-                                                            fontSize:
-                                                                context.width *
-                                                                    0.029,
-                                                            color: Colors.black,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                )
+                // const Contacts(),
               ],
             ),
           ),
@@ -261,8 +76,320 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-class _NoContacts extends StatelessWidget {
-  const _NoContacts();
+class Contacts extends StatelessWidget {
+  const Contacts({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'My Contacts',
+                style: AppTextStyles.normalTextPrimary,
+              ),
+              InkWell(
+                onTap: () => AppModal.showAppModal(
+                  context,
+                  const AddContactView(),
+                ),
+                child: Container(
+                  height: 35,
+                  width: 45,
+                  decoration: BoxDecoration(
+                    color: AppColors.deepPurple,
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: const Icon(
+                    Icons.add,
+                    color: Colors.white,
+                    size: 30,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+
+          // contacts card
+          const ContactsCard(),
+        ],
+      ),
+    );
+  }
+}
+
+class ContactsCard extends StatelessWidget {
+  const ContactsCard({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 140,
+      width: context.width,
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Colors.grey.withOpacity(0.4),
+        ),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Column(
+        children: [
+          // name container
+          Container(
+            height: 50,
+            decoration: BoxDecoration(
+              color: AppColors.lightPink,
+              border: Border(
+                bottom: BorderSide(
+                  color: Colors.grey.withOpacity(0.3),
+                ),
+              ),
+            ),
+
+            // name
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'John Doe',
+                    style: AppTextStyles.normalTextPrimary,
+                  ),
+                  const Icon(Icons.more_vert),
+                ],
+              ),
+            ),
+          ),
+
+          // phone - email - address
+          Column(
+            children: [
+              Row(
+                children: [
+                  SizedBox(
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: SizedBox(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                // phone  - email
+                                Row(
+                                  children: [
+                                    // phone
+                                    const Icon(
+                                      Icons.phone_outlined,
+                                      color: Colors.grey,
+                                      size: 20,
+                                    ),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    Text(
+                                      '+2348089787654',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: context.width * 0.029,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+
+                                    // email
+                                    const Icon(
+                                      Icons.email_outlined,
+                                      color: Colors.grey,
+                                      size: 20,
+                                    ),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    Text(
+                                      'henryifebunandu@gmail.com',
+                                      style: TextStyle(
+                                        fontSize: context.width * 0.029,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+
+                                const SizedBox(
+                                  height: 8,
+                                ),
+
+                                // address
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.location_on_outlined,
+                                      color: Colors.grey,
+                                      size: 20,
+                                    ),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    SizedBox(
+                                      width: context.width - 120,
+                                      child: Text(
+                                        'Plot 876, Akinsanya Oladosu street, Victoria Island, Lagos',
+                                        style: TextStyle(
+                                          fontSize: context.width * 0.029,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              )
+            ],
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class AddContactView extends StatelessWidget {
+  const AddContactView({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: context.height * 0.82,
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Add Contact',
+                style: AppTextStyles.normalTextPrimary3,
+              ),
+
+              const SizedBox(
+                height: 40,
+              ),
+
+              // name
+              Text(
+                'Name',
+                style: AppTextStyles.normalTextPrimary,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              AppTextField(
+                hintText: 'Contact name',
+                controller: TextEditingController(),
+              ),
+
+              const SizedBox(
+                height: 25,
+              ),
+
+              // phone
+              Text(
+                'Phone',
+                style: AppTextStyles.normalTextPrimary,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              AppTextField(
+                hintText: '+234',
+                controller: TextEditingController(),
+              ),
+
+              const SizedBox(
+                height: 25,
+              ),
+
+              // Email
+              Text(
+                'Email',
+                style: AppTextStyles.normalTextPrimary,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              AppTextField(
+                hintText: 'example@email.com',
+                controller: TextEditingController(),
+              ),
+
+              const SizedBox(
+                height: 25,
+              ),
+
+              // Home Address
+              Text(
+                'Name',
+                style: AppTextStyles.normalTextPrimary,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              AppTextField(
+                hintText: 'Enter address of contact',
+                controller: TextEditingController(),
+              ),
+
+              const SizedBox(
+                height: 35,
+              ),
+
+              // add contact
+              AppButton(
+                width: context.width,
+                onPressed: () {},
+                child: Text(
+                  'Add Contact',
+                  style: AppTextStyles.normalTextWhite,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class NoContacts extends StatelessWidget {
+  const NoContacts({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -308,8 +435,9 @@ class _NoContacts extends StatelessWidget {
           ),
           AppButton(
             width: context.width * 0.45,
-            onPressed: () => sl<NavigationService>().navigateTo(
-              RouteNames.home,
+            onPressed: () => AppModal.showAppModal(
+              context,
+              const AddContactView(),
             ),
             child: Text(
               'Add',
