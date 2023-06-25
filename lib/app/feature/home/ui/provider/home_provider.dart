@@ -26,6 +26,7 @@ class HomeProvider extends ChangeNotifier {
   }
 
   Future<void> addContact() async {
+    updateLoadingState(LoadingState.busy);
     final response = await _contactsRepository.addContact();
     response.fold(
       (error) {
@@ -39,6 +40,7 @@ class HomeProvider extends ChangeNotifier {
   }
 
   Future<void> getAllContacts() async {
+    updateLoadingState(LoadingState.busy);
     final response = await _contactsRepository.getAllContacts();
     response.fold(
       (error) {
