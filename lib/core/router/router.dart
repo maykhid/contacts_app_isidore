@@ -15,7 +15,9 @@ class Router {
       case RouteNames.home:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
       case RouteNames.verificationSent:
-        return MaterialPageRoute(builder: (_) => const VerificationSentScreen());
+        return MaterialPageRoute(
+          builder: (_) => const VerificationSentScreen(),
+        );
       default:
         return MaterialPageRoute(builder: (_) => const SignInScreen());
     }

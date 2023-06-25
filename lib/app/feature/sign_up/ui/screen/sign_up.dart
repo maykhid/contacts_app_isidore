@@ -84,7 +84,6 @@ class SignUpScreen extends StatelessWidget {
                     height: 10,
                   ),
                   AppTextField(
-                    maxLines: 1,
                     hintText: '*******',
                     controller: TextEditingController(),
                     suffixIcon: Icon(
@@ -107,7 +106,6 @@ class SignUpScreen extends StatelessWidget {
                   ),
 
                   AppTextField(
-                    maxLines: 1,
                     hintText: '*******',
                     controller: TextEditingController(),
                     suffixIcon: Icon(
