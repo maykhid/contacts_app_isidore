@@ -16,26 +16,26 @@ class SignUpProvider with ChangeNotifier {
 
   String get errorMsg => _errorMsg;
 
-  void updateLoadingState(LoadingState loadingState) {
+  void _updateLoadingState(LoadingState loadingState) {
     _loadingState = loadingState;
     notifyListeners();
   }
 
-  void updateErrorMessage(String errorMsg) {
+  void _updateErrorMessage(String errorMsg) {
     _errorMsg = errorMsg;
     notifyListeners();
   }
 
   Future<void> signUp() async {
-    updateLoadingState(LoadingState.busy);
+    _updateLoadingState(LoadingState.busy);
     final response = await _signUpRepository.signUp();
     response.fold(
       (error) {
-        updateLoadingState(LoadingState.error);
-        updateErrorMessage(error.message!);
+        _updateLoadingState(LoadingState.error);
+        _updateErrorMessage(error.message!);
       },
       (response) {
-        updateLoadingState(LoadingState.done);
+        _updateLoadingState(LoadingState.done);
       },
     );
   }
