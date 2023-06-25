@@ -130,7 +130,8 @@ class SignInScreen extends StatelessWidget {
                           text: ' Sign Up',
                           style: AppTextStyles.normalTextPrimary2,
                           recognizer: TapGestureRecognizer()
-                            ..onTap = () => sl<NavigationService>().navigateTo(
+                            ..onTap = () =>
+                                sl<NavigationService>().navigateToReplacement(
                                   RouteNames.signUp,
                                 ),
                         )
