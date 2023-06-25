@@ -1,4 +1,4 @@
-import 'package:contacts_app_isidore/app/feature/home/ui/screen/home.dart';
+import 'package:contacts_app_isidore/app/feature/home/ui/widgets/add_contact_view.dart';
 import 'package:contacts_app_isidore/app/feature/home/ui/widgets/contacts_card.dart';
 import 'package:contacts_app_isidore/core/ui/ui.dart';
 import 'package:contacts_app_isidore/core/ui/widgets/widgets.dart';
