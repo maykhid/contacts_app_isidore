@@ -13,6 +13,15 @@ class NavigationService {
         .pushNamed(routeName, arguments: arguments);
   }
 
+  Future<dynamic> navigateToReplacement(String routeName, {dynamic arguments}) {
+    return _navigationKey.currentState!
+        .pushReplacementNamed(routeName, arguments: arguments);
+  }
+
+  Future<dynamic> pushAndRemoveUntil<T extends dynamic>(String newRoute) {
+    return _navigationKey.currentState!
+        .pushNamedAndRemoveUntil(newRoute, (Route<dynamic> route) => false);
+  }
 
   Future<dynamic> navigateToRoute(Widget route) {
     return _navigationKey.currentState!.push(
@@ -23,7 +32,6 @@ class NavigationService {
   }
 
   Future<bool> maybePop() {
-    return _navigationKey.currentState!
-        .maybePop();
+    return _navigationKey.currentState!.maybePop();
   }
 }

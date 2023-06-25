@@ -84,7 +84,6 @@ class SignUpScreen extends StatelessWidget {
                     height: 10,
                   ),
                   AppTextField(
-                    maxLines: 1,
                     hintText: '*******',
                     controller: TextEditingController(),
                     suffixIcon: Icon(
@@ -107,7 +106,6 @@ class SignUpScreen extends StatelessWidget {
                   ),
 
                   AppTextField(
-                    maxLines: 1,
                     hintText: '*******',
                     controller: TextEditingController(),
                     suffixIcon: Icon(
@@ -123,7 +121,8 @@ class SignUpScreen extends StatelessWidget {
                   // login btn
                   AppButton(
                     width: context.width,
-                    onPressed: () => sl<NavigationService>().navigateTo(
+                    onPressed: () =>
+                        sl<NavigationService>().navigateToReplacement(
                       RouteNames.verificationSent,
                     ),
                     child: Text(
@@ -147,11 +146,11 @@ class SignUpScreen extends StatelessWidget {
                             text: ' Sign In',
                             style: AppTextStyles.normalTextPrimary2,
                             recognizer: TapGestureRecognizer()
-                              ..onTap =
-                                  () => sl<NavigationService>().navigateTo(
-                                        RouteNames.signIn,
-                                      ),
-                          )
+                              ..onTap = () =>
+                                  sl<NavigationService>().navigateToReplacement(
+                                    RouteNames.signIn,
+                                  ),
+                          ),
                         ],
                       ),
                     ),

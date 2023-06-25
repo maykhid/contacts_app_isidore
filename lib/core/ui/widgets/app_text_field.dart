@@ -12,7 +12,7 @@ class AppTextField extends StatelessWidget {
     this.validate,
     this.textInputType,
     this.textInputAction,
-    this.maxLines,
+    this.maxLines = 1, // based on ui maxLines are 1
     this.onSaved,
     this.onTap,
     this.labelText,

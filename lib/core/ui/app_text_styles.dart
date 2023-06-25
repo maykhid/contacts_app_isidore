@@ -38,6 +38,12 @@ class AppTextStyles {
     color: AppColors.deepPurple,
   );
 
+  static TextStyle normalTextPrimary3 = const TextStyle(
+    fontSize: 19,
+    fontWeight: FontWeight.w700,
+    color: AppColors.deepPurple,
+  );
+
   static TextStyle extraLargeTextPrimary = const TextStyle(
     fontSize: 27,
     fontWeight: FontWeight.w700,
