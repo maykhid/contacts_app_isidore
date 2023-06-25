@@ -1,3 +1,6 @@
+import 'package:contacts_app_isidore/app/feature/home/data/data_source/remote/contacts_data_source.dart';
+import 'package:contacts_app_isidore/app/feature/home/data/data_source/remote/graph_ql_contacts_data_source.dart';
+import 'package:contacts_app_isidore/app/feature/home/data/repository/contacts_repository.dart';
 import 'package:contacts_app_isidore/app/feature/sign_in/data/data_source/remote/graph_ql_sign_in_data_source.dart';
 import 'package:contacts_app_isidore/app/feature/sign_in/data/data_source/remote/sign_in_data_source.dart';
 import 'package:contacts_app_isidore/app/feature/sign_in/data/data_source/repository/sign_in_repository.dart';
@@ -47,6 +50,15 @@ Future<void> setupLocator() async {
     // register sign in repository
     ..registerLazySingleton<SignInRepository>(
       () => SignInRepository(signInDataSource: sl()),
+    )
+
+    // register contact datasource
+    ..registerLazySingleton<ContactsDataSource>(
+      () => GraphQLContactsDataSource(client: sl()),
+    )
+    // register contact Repository
+    ..registerLazySingleton<ContactsRepository>(
+      () => ContactsRepository(contactsDataSource: sl()),
     )
     // navigation
     ..registerLazySingleton(NavigationService.new);
