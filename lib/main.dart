@@ -3,6 +3,7 @@ import 'package:contacts_app_isidore/core/service_locator.dart';
 import 'package:flutter/material.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await setupLocator();
   runApp(const ContactsApp());
 }

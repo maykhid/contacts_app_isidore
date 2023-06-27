@@ -1,9 +1,10 @@
+import 'package:contacts_app_isidore/app/feature/home/data/data_source/models/contacts_response.dart';
 import 'package:contacts_app_isidore/app/feature/home/data/repository/contacts_repository.dart';
 import 'package:contacts_app_isidore/core/data/data_source/remote/loading_state.dart';
 import 'package:flutter/foundation.dart';
 
 class HomeProvider extends ChangeNotifier {
-  HomeProvider(ContactsRepository contactsRepository)
+  HomeProvider({required ContactsRepository contactsRepository})
       : _contactsRepository = contactsRepository;
 
   final ContactsRepository _contactsRepository;
@@ -15,6 +16,10 @@ class HomeProvider extends ChangeNotifier {
 
   String get errorMsg => _errorMsg;
 
+  ContactsResponse _contactsResponse = ContactsResponse(contacts: []);
+
+  ContactsResponse get contactResponse => _contactsResponse;
+
   void _updateLoadingState(LoadingState loadingState) {
     _loadingState = loadingState;
     notifyListeners();
@@ -22,6 +27,11 @@ class HomeProvider extends ChangeNotifier {
 
   void _updateErrorMessage(String errorMsg) {
     _errorMsg = errorMsg;
+    notifyListeners();
+  }
+
+  void _updateContactsResponse(ContactsResponse response) {
+    _contactsResponse = response;
     notifyListeners();
   }
 
@@ -48,6 +58,8 @@ class HomeProvider extends ChangeNotifier {
         _updateErrorMessage(error.message!);
       },
       (response) {
+        print(response);
+        _updateContactsResponse(response);
         _updateLoadingState(LoadingState.done);
       },
     );

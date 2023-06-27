@@ -1,9 +1,3 @@
-import 'dart:convert';
-
-SignInResponse signInResponseFromJson(String str) =>
-    SignInResponse.fromMap(json.decode(str) as Map<String, dynamic>);
-
-
 class SignInResponse {
   SignInResponse({
     required this.login,

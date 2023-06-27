@@ -1,11 +1,16 @@
+import 'package:contacts_app_isidore/app/feature/home/data/data_source/models/contacts_response.dart';
 import 'package:contacts_app_isidore/core/extensions/sized_context.dart';
 import 'package:contacts_app_isidore/core/ui/ui.dart';
 import 'package:flutter/material.dart';
 
 class ContactsCard extends StatelessWidget {
   const ContactsCard({
+    required this.contact,
     super.key,
+    
   });
+
+  final Contact contact;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +45,7 @@ class ContactsCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'John Doe',
+                    contact.name,
                     style: AppTextStyles.normalTextPrimary,
                   ),
                   const Icon(Icons.more_vert),
@@ -76,7 +81,7 @@ class ContactsCard extends StatelessWidget {
                                       width: 5,
                                     ),
                                     Text(
-                                      '+2348089787654',
+                                      contact.phone,
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: context.width * 0.029,
@@ -98,7 +103,7 @@ class ContactsCard extends StatelessWidget {
                                       width: 5,
                                     ),
                                     Text(
-                                      'henryifebunandu@gmail.com',
+                                      contact.email,
                                       style: TextStyle(
                                         fontSize: context.width * 0.029,
                                         color: Colors.black,
@@ -126,7 +131,7 @@ class ContactsCard extends StatelessWidget {
                                     SizedBox(
                                       width: context.width - 120,
                                       child: Text(
-                                        'Plot 876, Akinsanya Oladosu street, Victoria Island, Lagos',
+                                        contact.address,
                                         style: TextStyle(
                                           fontSize: context.width * 0.029,
                                           color: Colors.black,

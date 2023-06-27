@@ -17,7 +17,7 @@ class GraphQLSignInDataSource implements SignInDataSource {
     // options
     final options = MutationOptions(
       document: gql(GQLDocuments.login),
-      variables:  {
+      variables: {
         'email': email,
         'password': password,
       },
@@ -25,21 +25,28 @@ class GraphQLSignInDataSource implements SignInDataSource {
 
     try {
       final response = await _client.performMutation(options: options);
-      final statusCode = response.data!['login']['status'] as int;
+      if (response.data != null) {
+        final statusCode = response.data!['login']['status'] as int;
 
-      if (statusCode >= 200 && statusCode <= 299) {
-        return SignInResponse.fromMap(response.data!);
-      } else if (statusCode >= 400 && statusCode <= 499) {
-        final errors = response.data!['login']['errors'] as List;
-        
-        throw ClientException(errors[0]['fullMessage'].toString(), statusCode);
-      } else if (response.exception is GraphQLError) {
-        throw ServerException(
-          response.exception!.graphqlErrors[0] as String?,
-          statusCode,
-        );
+        if (statusCode >= 200 && statusCode <= 299) {
+          return SignInResponse.fromMap(response.data!);
+        } else if (statusCode >= 400 && statusCode <= 499) {
+          final errors = response.data!['login']['errors'] as List;
+
+          throw ClientException(
+            errors[0]['fullMessage'].toString(),
+            statusCode,
+          );
+        } else if (response.exception is GraphQLError) {
+          throw ServerException(
+            response.exception!.graphqlErrors[0].message,
+            statusCode,
+          );
+        }
       }
-      throw Exception();
+      throw Exception(
+        response.exception!.linkException!.originalException.toString(),
+      );
     } catch (e) {
       rethrow;
     }
