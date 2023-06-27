@@ -1,43 +1,57 @@
 class GQLDocuments {
   static const String login = r'''
-mutation Login($email: String!, $password: String!) {
-  login(email: $email, password: $password) {
-    user {
-      createdAt
-      email
-      id
-      status
-      tokens
-      updatedAt
+    mutation Login($email: String!, $password: String!) {
+      login(email: $email, password: $password) {
+        user {
+          createdAt
+          email
+          id
+          status
+          tokens
+          updatedAt
+        }
+        errors {
+          fullMessage
+          message
+          property
+        }
+        status
+      }
     }
-    errors {
-      fullMessage
-      message
-      property
-    }
-    status
-  }
-}
 ''';
 
   static const String signUp = r'''
-mutation Mutation($userInput: UserRegisterInput!) {
-  signup(userInput: $userInput) {
-    errors {
-      property
-      message
-      fullMessage
+    mutation Mutation($userInput: UserRegisterInput!) {
+      signup(userInput: $userInput) {
+        errors {
+          property
+          message
+          fullMessage
+        }
+        status
+        user {
+          createdAt
+          email
+          id
+          status
+          tokens
+          updatedAt
+        }
+      }
     }
-    status
-    user {
-      createdAt
-      email
-      id
-      status
-      tokens
-      updatedAt
-    }
-  }
-}
+''';
+
+  static const String allContacts = '''
+        query Query {
+          contacts {
+            address
+            createdAt
+            email
+            name
+            id
+            phone
+            updatedAt
+          }
+        }
 ''';
 }
