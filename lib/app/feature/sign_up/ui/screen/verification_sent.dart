@@ -55,7 +55,7 @@ class VerificationSentScreen extends StatelessWidget {
             AppButton(
               height: 50,
               width: context.width * 0.45,
-              onPressed: () => sl<NavigationService>().navigateTo(
+              onPressed: () => sl<NavigationService>().navigateToReplacement(
                 RouteNames.home,
               ),
               child: Text(

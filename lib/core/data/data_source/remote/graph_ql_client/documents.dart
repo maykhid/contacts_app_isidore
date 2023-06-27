@@ -19,4 +19,25 @@ mutation Login($email: String!, $password: String!) {
   }
 }
 ''';
+
+  static const String signUp = r'''
+mutation Mutation($userInput: UserRegisterInput!) {
+  signup(userInput: $userInput) {
+    errors {
+      property
+      message
+      fullMessage
+    }
+    status
+    user {
+      createdAt
+      email
+      id
+      status
+      tokens
+      updatedAt
+    }
+  }
+}
+''';
 }

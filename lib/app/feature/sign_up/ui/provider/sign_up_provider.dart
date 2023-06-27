@@ -3,7 +3,7 @@ import 'package:contacts_app_isidore/core/data/data_source/remote/loading_state.
 import 'package:flutter/foundation.dart';
 
 class SignUpProvider with ChangeNotifier {
-  SignUpProvider(SignUpRepository signUpRepository)
+  SignUpProvider({required SignUpRepository signUpRepository})
       : _signUpRepository = signUpRepository;
 
   final SignUpRepository _signUpRepository;
@@ -26,9 +26,14 @@ class SignUpProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> signUp() async {
+  Future<void> signUp(
+    String email,
+    String password,
+    String passwordConfirmation,
+  ) async {
     _updateLoadingState(LoadingState.busy);
-    final response = await _signUpRepository.signUp();
+    final response =
+        await _signUpRepository.signUp(email, password, passwordConfirmation);
     response.fold(
       (error) {
         _updateLoadingState(LoadingState.error);
