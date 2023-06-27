@@ -36,9 +36,9 @@ class GraphQLSignUpDataSource implements SignUpDataSource {
       if (statusCode >= 200 && statusCode <= 299) {
         return SignUpResponse.fromMap(response.data!);
       } else if (statusCode >= 400 && statusCode <= 499) {
-        final errors = response.data!['login']['errors'] as List;
+        final errors = response.data!['signup']['errors'] as List;
 
-        throw ClientException(errors[0]['message'].toString(), statusCode);
+        throw ClientException(errors[0]['fullMessage'].toString(), statusCode);
       } else if (response.exception is GraphQLError) {
         throw ServerException(
           response.exception!.graphqlErrors[0] as String?,

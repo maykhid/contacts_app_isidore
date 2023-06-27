@@ -32,7 +32,7 @@ class GraphQLSignInDataSource implements SignInDataSource {
       } else if (statusCode >= 400 && statusCode <= 499) {
         final errors = response.data!['login']['errors'] as List;
         
-        throw ClientException(errors[0]['message'].toString(), statusCode);
+        throw ClientException(errors[0]['fullMessage'].toString(), statusCode);
       } else if (response.exception is GraphQLError) {
         throw ServerException(
           response.exception!.graphqlErrors[0] as String?,

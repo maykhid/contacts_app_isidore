@@ -7,6 +7,7 @@ import 'package:contacts_app_isidore/core/router/navigation_service.dart';
 import 'package:contacts_app_isidore/core/router/route_names.dart';
 import 'package:contacts_app_isidore/core/service_locator.dart';
 import 'package:contacts_app_isidore/core/ui/ui.dart';
+import 'package:contacts_app_isidore/core/ui/widgets/app_snackbar.dart';
 import 'package:contacts_app_isidore/core/ui/widgets/widgets.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -235,6 +236,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
             .navigateToReplacement(RouteNames.verificationSent);
       } else {
         // show error
+        // ignore: use_build_context_synchronously
+        AppSnackBar.showErrorSnackBar(context, signUpProvider.errorMsg);
       }
     }
   }
