@@ -11,29 +11,17 @@ import 'package:contacts_app_isidore/core/data/data_source/remote/graph_ql_clien
 import 'package:contacts_app_isidore/core/data/data_source/remote/graph_ql_client/graph_ql_client.dart';
 import 'package:contacts_app_isidore/core/router/navigation_service.dart';
 import 'package:get_it/get_it.dart';
-import 'package:graphql/client.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 GetIt sl = GetIt.instance;
 
 Future<void> setupLocator() async {
-  // graphQL client
-  GraphQLClient createClient() {
-    final httpLink = HttpLink('https://demo.isidoreagric.co');
-
-    final Link link = httpLink;
-
-    return GraphQLClient(
-      cache: GraphQLCache(),
-      link: link,
-    );
-  }
+  final sharedPreferences = await SharedPreferences.getInstance();
 
   sl
-    ..registerLazySingleton(createClient) // resister graphQl client
+    // resister graphQl client
     ..registerLazySingleton<IClient>(
-      () => GraphQLClientImpl(
-        graphQLClient: sl(),
-      ),
+      GraphQLClientImpl.new,
     )
     // register signup data source
     ..registerLazySingleton<SignUpDataSource>(
@@ -49,7 +37,7 @@ Future<void> setupLocator() async {
     )
     // register sign in repository
     ..registerLazySingleton<SignInRepository>(
-      () => SignInRepository(signInDataSource: sl()),
+      () => SignInRepository(signInDataSource: sl(), sharedPreferences: sl()),
     )
 
     // register contact datasource
@@ -61,5 +49,6 @@ Future<void> setupLocator() async {
       () => ContactsRepository(contactsDataSource: sl()),
     )
     // navigation
-    ..registerLazySingleton(NavigationService.new);
+    ..registerLazySingleton(NavigationService.new)
+    ..registerLazySingleton<SharedPreferences>(() => sharedPreferences);
 }

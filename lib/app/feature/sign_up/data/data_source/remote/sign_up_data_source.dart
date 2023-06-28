@@ -3,5 +3,9 @@
 import 'package:contacts_app_isidore/app/feature/sign_up/data/model/sign_up_response.dart';
 
 abstract class SignUpDataSource {
-  Future<SignUpResponse> signUp();
+  Future<SignUpResponse> signUp(
+    String email,
+    String password,
+    String passwordConfirmation,
+  );
 }
