@@ -54,4 +54,26 @@ class GQLDocuments {
           }
         }
 ''';
+
+  static const String addContact = r'''
+    mutation Mutation($contactInput: ContactInput!) {
+      contact(contactInput: $contactInput) {
+        contact {
+          address
+          createdAt
+          email
+          id
+          name
+          phone
+          updatedAt
+        }
+        errors {
+          fullMessage
+          message
+          property
+        }
+        status
+      }
+    }
+''';
 }

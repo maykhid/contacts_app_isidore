@@ -106,6 +106,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       hintText: 'example@email.com',
                       controller: _emailController,
                       validate: _emailValidator,
+                      textInputType: TextInputType.emailAddress,
                       onSaved: (String? email) => _email = email!,
                     ),
 

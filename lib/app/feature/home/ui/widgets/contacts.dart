@@ -1,4 +1,3 @@
-import 'package:contacts_app_isidore/app/feature/home/data/data_source/models/contacts_response.dart';
 import 'package:contacts_app_isidore/app/feature/home/ui/provider/home_provider.dart';
 import 'package:contacts_app_isidore/app/feature/home/ui/widgets/add_contact_view.dart';
 import 'package:contacts_app_isidore/app/feature/home/ui/widgets/contacts_card.dart';
@@ -28,7 +27,9 @@ class Contacts extends StatelessWidget {
               InkWell(
                 onTap: () => AppModal.showAppModal(
                   context,
-                  const AddContactView(),
+                  AddContactView(
+                    homeProvider: context.read<HomeProvider>(),
+                  ),
                 ),
                 child: Container(
                   height: 35,
@@ -52,12 +53,14 @@ class Contacts extends StatelessWidget {
 
           // contacts card
           ListView.separated(
-            itemCount:contacts.length,
+            itemCount: contacts.length,
             shrinkWrap: true,
             separatorBuilder: (context, index) =>
                 const SizedBox.square(dimension: 8),
             itemBuilder: (context, index) {
-              return  ContactsCard(contact: contacts[index] as Contact,);
+              return ContactsCard(
+                contact: contacts[index],
+              );
             },
           ),
         ],

@@ -1,8 +1,10 @@
+import 'package:contacts_app_isidore/app/feature/home/ui/provider/home_provider.dart';
 import 'package:contacts_app_isidore/app/feature/home/ui/widgets/add_contact_view.dart';
 import 'package:contacts_app_isidore/core/extensions/sized_context.dart';
 import 'package:contacts_app_isidore/core/ui/ui.dart';
 import 'package:contacts_app_isidore/core/ui/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class NoContactsView extends StatelessWidget {
   const NoContactsView({
@@ -55,7 +57,9 @@ class NoContactsView extends StatelessWidget {
             width: context.width * 0.45,
             onPressed: () => AppModal.showAppModal(
               context,
-              const AddContactView(),
+              AddContactView(
+                homeProvider: context.read<HomeProvider>(),
+              ),
             ),
             child: Text(
               'Add',

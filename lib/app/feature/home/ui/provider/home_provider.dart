@@ -35,16 +35,28 @@ class HomeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> addContact() async {
+  Future<void> addContact({
+    required String name,
+    required String phone,
+    required String email,
+    required String address,
+  }) async {
     _updateLoadingState(LoadingState.busy);
-    final response = await _contactsRepository.addContact();
+    final response = await _contactsRepository.addContact(
+      name: name,
+      phone: phone,
+      email: email,
+      address: address,
+    );
     response.fold(
       (error) {
         _updateLoadingState(LoadingState.error);
         _updateErrorMessage(error.message!);
       },
       (response) {
+        getAllContacts();
         _updateLoadingState(LoadingState.done);
+        // refresh contact list
       },
     );
   }

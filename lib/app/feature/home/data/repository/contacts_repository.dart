@@ -10,10 +10,24 @@ class ContactsRepository {
 
   final ContactsDataSource _contactsDataSource;
 
-  Future<Either<Failure, bool>> addContact() async {
+  Future<Either<Failure, bool>> addContact({
+    required String name,
+    required String phone,
+    required String email,
+    required String address,
+  }) async {
     try {
-      await _contactsDataSource.addContact();
+      await _contactsDataSource.addContact(
+        name: name,
+        phone: phone,
+        email: email,
+        address: address,
+      );
       return const Right(true);
+    }  on ClientException catch (e) {
+      return Left(ClientFailure(message: e.message, code: e.code.toString()));
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message, code: e.code.toString()));
     } on Exception catch (e) {
       return Left(
         UnexpectedFailure(message: e.toString(), code: '0'),
