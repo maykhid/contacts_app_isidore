@@ -37,6 +37,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   String _password = '';
   String _confrimPassword = '';
 
+  bool _showPassword = false;
+
   @override
   void dispose() {
     _emailController.dispose();
@@ -135,10 +137,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         controller: _passwordController,
                         validate: _passwordValidator,
                         textInputAction: TextInputAction.unspecified,
+                        obscureText: _showPassword,
                         onSaved: (String? password) => _password = password!,
-                        suffixIcon: Icon(
-                          Icons.remove_red_eye_rounded,
-                          color: Colors.grey.withOpacity(0.4),
+                        suffixIcon: InkWell(
+                          onTap: () {
+                            setState(() {
+                              _showPassword = !_showPassword;
+                            });
+                          },
+                          child: Icon(
+                            _showPassword
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            color: Colors.grey.withOpacity(0.4),
+                          ),
                         ),
                       ),
 
@@ -158,6 +170,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       AppTextField(
                         hintText: '*******',
                         controller: _confirmpasswordController,
+                        obscureText: _showPassword,
                         textInputAction: TextInputAction.unspecified,
                         onSaved: (String? password) =>
                             _confrimPassword = password!,
@@ -167,9 +180,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           }
                           return null;
                         },
-                        suffixIcon: Icon(
-                          Icons.remove_red_eye_rounded,
-                          color: Colors.grey.withOpacity(0.4),
+                        suffixIcon: InkWell(
+                          onTap: () {
+                            setState(() {
+                              _showPassword = !_showPassword;
+                            });
+                          },
+                          child: Icon(
+                            _showPassword
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            color: Colors.grey.withOpacity(0.4),
+                          ),
                         ),
                       ),
 

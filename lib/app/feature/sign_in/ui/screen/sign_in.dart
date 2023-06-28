@@ -34,6 +34,8 @@ class _SignInScreenState extends State<SignInScreen> {
   String _email = '';
   String _password = '';
 
+  bool _showPassword = false;
+
   @override
   void dispose() {
     _emailController.dispose();
@@ -135,10 +137,20 @@ class _SignInScreenState extends State<SignInScreen> {
                       hintText: '*******',
                       controller: _passwordController,
                       validate: _passwordValidator,
+                      obscureText: _showPassword,
                       onSaved: (String? password) => _password = password!,
-                      suffixIcon: Icon(
-                        Icons.remove_red_eye_rounded,
-                        color: Colors.grey.withOpacity(0.4),
+                      suffixIcon: InkWell(
+                        onTap: () {
+                          setState(() {
+                            _showPassword = !_showPassword;
+                          });
+                        },
+                        child: Icon(
+                          _showPassword
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: Colors.grey.withOpacity(0.4),
+                        ),
                       ),
                     ),
 
