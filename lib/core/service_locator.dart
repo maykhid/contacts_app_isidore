@@ -11,18 +11,16 @@ import 'package:contacts_app_isidore/core/data/data_source/remote/graph_ql_clien
 import 'package:contacts_app_isidore/core/data/data_source/remote/graph_ql_client/graph_ql_client.dart';
 import 'package:contacts_app_isidore/core/data/data_source/remote/keys.dart';
 import 'package:contacts_app_isidore/core/router/navigation_service.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:graphql/client.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 GetIt sl = GetIt.instance;
 
 Future<void> setupLocator() async {
-  AndroidOptions getAndroidOptions() => const AndroidOptions(
-        encryptedSharedPreferences: true,
-      );
-  final secureStorage = FlutterSecureStorage(aOptions: getAndroidOptions());
-  final token = await secureStorage.read(key: AppStorageKeys.tokenKey);
+
+  final sharedPreferences = await SharedPreferences.getInstance();
+  final token = sharedPreferences.getString(AppStorageKeys.tokenKey);
   // graphQL client
   GraphQLClient createClient() {
     final httpLink = HttpLink(
@@ -59,7 +57,7 @@ Future<void> setupLocator() async {
     )
     // register sign in repository
     ..registerLazySingleton<SignInRepository>(
-      () => SignInRepository(signInDataSource: sl(), secureStorage: sl()),
+      () => SignInRepository(signInDataSource: sl(), sharedPreferences: sl()),
     )
 
     // register contact datasource
@@ -72,5 +70,5 @@ Future<void> setupLocator() async {
     )
     // navigation
     ..registerLazySingleton(NavigationService.new)
-    ..registerLazySingleton<FlutterSecureStorage>(() => secureStorage);
+    ..registerLazySingleton<SharedPreferences>(() => sharedPreferences);
 }

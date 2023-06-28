@@ -4,17 +4,18 @@ import 'package:contacts_app_isidore/core/data/data_source/remote/keys.dart';
 import 'package:contacts_app_isidore/core/model/error/exception.dart';
 import 'package:contacts_app_isidore/core/model/error/failure.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignInRepository {
   SignInRepository({
     required SignInDataSource signInDataSource,
-    required FlutterSecureStorage secureStorage,
+    required SharedPreferences sharedPreferences,
   })  : _signInDataSource = signInDataSource,
-        _flutterSecureStorage = secureStorage;
+        _sharedPreferences = sharedPreferences;
 
   final SignInDataSource _signInDataSource;
-  final FlutterSecureStorage _flutterSecureStorage;
+  final SharedPreferences _sharedPreferences;
 
   Future<Either<Failure, SignInResponse>> signIn(
     String email,
@@ -23,9 +24,9 @@ class SignInRepository {
     try {
       final response = await _signInDataSource.signIn(email, password);
       // store token
-      await _flutterSecureStorage.write(
-        key: AppStorageKeys.tokenKey,
-        value: response.login.user!.tokens,
+      await _sharedPreferences.setString(
+        AppStorageKeys.tokenKey,
+        response.login.user!.tokens,
       );
       return Right(response);
     } on ClientException catch (e) {
@@ -38,4 +39,10 @@ class SignInRepository {
       );
     }
   }
+
+  bool isUserLoggedIn() =>
+      _sharedPreferences.containsKey(AppStorageKeys.tokenKey) &&
+      !JwtDecoder.isExpired(
+        _sharedPreferences.getString(AppStorageKeys.tokenKey)!,
+      );
 }
