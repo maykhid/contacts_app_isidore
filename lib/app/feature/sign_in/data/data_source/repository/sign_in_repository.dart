@@ -3,9 +3,7 @@ import 'package:contacts_app_isidore/app/feature/sign_in/data/models/sign_in_res
 import 'package:contacts_app_isidore/core/data/data_source/remote/keys.dart';
 import 'package:contacts_app_isidore/core/model/error/exception.dart';
 import 'package:contacts_app_isidore/core/model/error/failure.dart';
-import 'package:contacts_app_isidore/core/service_locator.dart';
 import 'package:dartz/dartz.dart';
-import 'package:graphql/client.dart'hide ServerException;
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

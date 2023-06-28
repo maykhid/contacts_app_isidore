@@ -37,7 +37,6 @@ class GraphQLContactsDataSource implements ContactsDataSource {
     try {
       final response = await _client.performMutation(options: options);
       if (response.data != null) {
-        print(response.data);
         final statusCode = response.data!['contact']['status'] as int;
 
         if (statusCode >= 200 && statusCode <= 299) {

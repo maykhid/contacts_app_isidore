@@ -1,10 +1,7 @@
 import 'package:contacts_app_isidore/app/feature/sign_in/data/data_source/repository/sign_in_repository.dart';
 import 'package:contacts_app_isidore/app/feature/sign_up/data/repository/sign_up_repository.dart';
-import 'package:contacts_app_isidore/core/data/data_source/remote/graph_ql_client/client.dart';
 import 'package:contacts_app_isidore/core/data/data_source/remote/loading_state.dart';
-import 'package:contacts_app_isidore/core/service_locator.dart';
 import 'package:flutter/foundation.dart';
-import 'package:graphql/client.dart';
 
 class SignUpProvider with ChangeNotifier {
   SignUpProvider({
