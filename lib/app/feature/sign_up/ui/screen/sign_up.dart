@@ -1,3 +1,4 @@
+import 'package:contacts_app_isidore/app/feature/sign_in/data/data_source/repository/sign_in_repository.dart';
 import 'package:contacts_app_isidore/app/feature/sign_up/data/repository/sign_up_repository.dart';
 import 'package:contacts_app_isidore/app/feature/sign_up/ui/provider/sign_up_provider.dart';
 import 'package:contacts_app_isidore/core/data/data_source/remote/loading_state.dart';
@@ -47,8 +48,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) =>
-          SignUpProvider(signUpRepository: sl<SignUpRepository>()),
+      create: (context) => SignUpProvider(
+        signUpRepository: sl<SignUpRepository>(),
+        signInRepository: sl<SignInRepository>(),
+      ),
       child: Scaffold(
         body: SafeArea(
           child: SizedBox.expand(

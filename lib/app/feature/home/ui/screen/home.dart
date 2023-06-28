@@ -84,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: CupertinoActivityIndicator(),
                             );
                           case LoadingState.done:
-                            if (homeProvider.contactResponse.contacts.isEmpty) {
+                            if (homeProvider.contactResponse.isEmpty) {
                               return const NoContactsView();
                             } else {
                               return const Contacts();

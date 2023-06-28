@@ -16,9 +16,9 @@ class HomeProvider extends ChangeNotifier {
 
   String get errorMsg => _errorMsg;
 
-  ContactsResponse _contactsResponse = ContactsResponse(contacts: []);
+  List<Contact> _contactsResponse = List.empty(growable: true);
 
-  ContactsResponse get contactResponse => _contactsResponse;
+  List<Contact> get contactResponse => _contactsResponse;
 
   void _updateLoadingState(LoadingState loadingState) {
     _loadingState = loadingState;
@@ -30,7 +30,7 @@ class HomeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void _updateContactsResponse(ContactsResponse response) {
+  void _updateContactsResponse(List<Contact> response) {
     _contactsResponse = response;
     notifyListeners();
   }
@@ -70,8 +70,8 @@ class HomeProvider extends ChangeNotifier {
         _updateErrorMessage(error.message!);
       },
       (response) {
-        print(response);
-        _updateContactsResponse(response);
+        // print(response.contacts.last.name);
+        _updateContactsResponse(response.contacts);
         _updateLoadingState(LoadingState.done);
       },
     );

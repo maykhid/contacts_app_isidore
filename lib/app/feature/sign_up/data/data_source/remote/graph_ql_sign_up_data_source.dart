@@ -45,7 +45,9 @@ class GraphQLSignUpDataSource implements SignUpDataSource {
           statusCode,
         );
       }
-      throw Exception();
+      throw Exception(
+        response.exception!.linkException!.originalException.toString(),
+      );
     } catch (e) {
       rethrow;
     }

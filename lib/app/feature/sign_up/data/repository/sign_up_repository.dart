@@ -24,6 +24,7 @@ class SignUpRepository {
     } on ServerException catch (e) {
       return Left(ServerFailure(message: e.message, code: e.code.toString()));
     } on Exception catch (e) {
+      print(e.toString());
       return Left(
         UnexpectedFailure(message: e.toString(), code: '0'),
       );

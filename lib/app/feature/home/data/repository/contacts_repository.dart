@@ -24,7 +24,7 @@ class ContactsRepository {
         address: address,
       );
       return const Right(true);
-    }  on ClientException catch (e) {
+    } on ClientException catch (e) {
       return Left(ClientFailure(message: e.message, code: e.code.toString()));
     } on ServerException catch (e) {
       return Left(ServerFailure(message: e.message, code: e.code.toString()));
@@ -44,6 +44,7 @@ class ContactsRepository {
     } on ServerException catch (e) {
       return Left(ServerFailure(message: e.message, code: e.code.toString()));
     } on Exception catch (e) {
+      print(e);
       return Left(
         UnexpectedFailure(message: e.toString(), code: '0'),
       );

@@ -171,6 +171,10 @@ class _AddContactViewState extends State<AddContactView> {
                       },
                     );
                   },
+                ),
+
+                const SizedBox(
+                  height: 300,
                 )
               ],
             ),
@@ -194,11 +198,13 @@ class _AddContactViewState extends State<AddContactView> {
       );
 
       if (homeProvider.loadingState == LoadingState.done) {
+        // ignore: use_build_context_synchronously
+        AppSnackBar.showSuccessSnackBar(context, 'Contact added');
         await homeProvider.getAllContacts();
         sl<NavigationService>().pop();
       } else {
         // show error
-         sl<NavigationService>().pop();
+        // sl<NavigationService>().pop();
         // ignore: use_build_context_synchronously
         AppSnackBar.showErrorSnackBar(context, homeProvider.errorMsg);
       }

@@ -1,6 +1,7 @@
 import 'package:contacts_app_isidore/app/feature/home/ui/provider/home_provider.dart';
 import 'package:contacts_app_isidore/app/feature/home/ui/widgets/add_contact_view.dart';
 import 'package:contacts_app_isidore/app/feature/home/ui/widgets/contacts_card.dart';
+import 'package:contacts_app_isidore/core/extensions/sized_context.dart';
 import 'package:contacts_app_isidore/core/ui/ui.dart';
 import 'package:contacts_app_isidore/core/ui/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ class Contacts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final contacts = context.read<HomeProvider>().contactResponse.contacts;
+    final contacts = context.read<HomeProvider>().contactResponse;
     return SizedBox(
       child: Column(
         children: [
@@ -50,18 +51,21 @@ class Contacts extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-
+    
           // contacts card
-          ListView.separated(
-            itemCount: contacts.length,
-            shrinkWrap: true,
-            separatorBuilder: (context, index) =>
-                const SizedBox.square(dimension: 8),
-            itemBuilder: (context, index) {
-              return ContactsCard(
-                contact: contacts[index],
-              );
-            },
+          SizedBox(
+            height: context.height * 0.7,
+            child: ListView.separated(
+              itemCount: contacts.length,
+              shrinkWrap: true,
+              separatorBuilder: (context, index) =>
+                  const SizedBox.square(dimension: 8),
+              itemBuilder: (context, index) {
+                return ContactsCard(
+                  contact: contacts[index],
+                );
+              },
+            ),
           ),
         ],
       ),
